@@ -8,12 +8,12 @@ function log {
     echo -e "${YELLOW} $@ ${NC}"
 }
 
-function rmake {
-    log "-> $3 $(pwd)/$1 ..."
-    ( cd $1 && make -j $2)
+function operation {
+    log "-> Calling ${@:2} on $(pwd)/$1 ..."
+    ( cd $1 && ${@:2} )
 }
 
-function install {
+function rinstall {
     log "-> $2 src/$1/$1 to bin/$1"
     cp src/$1/$1 bin/
 }
@@ -25,12 +25,16 @@ function call {
 }
 
 function build {
-    echo "$DIRS"     | call rmake all "Building directory :"
-    echo "$PROGRAMS" | call install "Installing "
+    echo "$DIRS"     | call operation make -j all
+    echo "$PROGRAMS" | call rinstall "Installing "
 }
 
 function clean {
-    echo "$DIRS"     | call rmake clean "Clean directory :"
+    echo "$DIRS"     | call operation make clean
+}
+
+function forall {
+    echo "$DIRS" | call operation $@
 }
 
 PROGRAMS=$(cat)
