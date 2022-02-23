@@ -4,3 +4,6 @@
 [submodule "src/xmonad"]
 	path = src/xmonad
 	url = https://github.com/xmonad/xmonad
+[submodule "src/pcmanfm"]
+	path = src/pcmanfm
+	url = https://github.com/lxde/pcmanfm
