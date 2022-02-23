@@ -1,0 +1,6 @@
+[submodule "src/bspwm"]
+	path = src/bspwm
+	url = https://github.com/baskerville/bspwm.git
+[submodule "src/xmonad"]
+	path = src/xmonad
+	url = https://github.com/xmonad/xmonad
