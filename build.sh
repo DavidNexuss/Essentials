@@ -25,12 +25,14 @@ function call {
 }
 
 function build {
-    ls -d src/* | call rmake all "Building directory :"
-    ls src | call install "Installing "
+    echo "$DIRS"     | call rmake all "Building directory :"
+    echo "$PROGRAMS" | call install "Installing "
 }
 
 function clean {
-    ls -d src/* | call rmake clean "Clean directory :"
+    echo "$DIRS"     | call rmake clean "Clean directory :"
 }
 
+PROGRAMS=$(cat)
+DIRS=$(echo "$PROGRAMS" |sed -e 's/^/src\//' )
 $@
