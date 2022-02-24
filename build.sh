@@ -10,11 +10,12 @@ function log {
 
 function operation {
     log "-> Calling ${@:2} on $(pwd)/$1 ..."
-    ( cd $1 && ${@:2} )
+    ( cd $1 && ${@:2} > /dev/null)
 }
 
 function rinstall {
     log "-> $2 src/$1/$1 to bin/$1"
+    rm -f bin/$1
     cp src/$1/$1 bin/
 }
 
